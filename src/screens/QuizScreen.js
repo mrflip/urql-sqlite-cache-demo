@@ -1,19 +1,21 @@
-import React /**/ from "react"
-import _ from "lodash"
+import React                       /**/ from "react"
+import _                                from "lodash"
 //
-import Theme from "../utils/Theme"
-import { useToggler } from "../utils/hooks"
-import { FullWidthOutlineButton, KeyboardAwareScrollView, Paragraph, StyleSheet, Title, View } from "../elements"
+import Theme                            from "../utils/Theme"
+import { useToggler }                   from "../utils/hooks"
+import {
+  Button, Paragraph, ScreenContainer,
+  StyleSheet, Title, View }             from "../elements"
 //
-import AnswerList from "../components/AnswerList"
-import AnswerEntry from "../components/AnswerEntry"
-import Questions from "../../data/questions.json"
+import AnswerList                       from "../components/AnswerList"
+import AnswerEntry                      from "../components/AnswerEntry"
+import Questions                        from "../../data/questions"
 
 function randomIndex() {
   return _.random(0, Questions.length - 1)
 }
 
-function QuizScreen({ navigation }) {
+const QuizScreen = () => {
   const [shown, toggleShown, setShown] = useToggler()
   const [idx, setIdx] = React.useState(randomIndex())
   const [guess, setGuess] = React.useState("")
@@ -24,12 +26,12 @@ function QuizScreen({ navigation }) {
     setIdx(randomIndex())
     setShown(false)
     setGuess("")
-    textInput.current?.focus()
+    if (textInput.current) { textInput.current.focus() }
   }
   //
   return (
-    <KeyboardAwareScrollView style={styles.mainScroller}>
-      <Title>{question}!</Title>
+    <ScreenContainer>
+      <Title>{question}</Title>
 
       <AnswerEntry
         ref={textInput}
@@ -39,18 +41,18 @@ function QuizScreen({ navigation }) {
         onSubmitEditing={() => (shown ? nextQuestion() : setShown(true))}
       />
 
-      <FullWidthOutlineButton onPress={toggleShown} title={shown ? "Hide Answers" : "Show Answers"} />
+      <Button onPress={toggleShown} title={shown ? "Hide Answers" : "Show Answers"} />
 
       {shown && <AnswerList answers={answers} />}
 
-      <FullWidthOutlineButton onPress={nextQuestion} title="Next Question" />
+      <Button onPress={nextQuestion} title="Next Question" />
 
       <View style={Theme.s.centered}>
         <Paragraph style={styles.questionIndexBox}>
           {section}: {subsection} {idx}
         </Paragraph>
       </View>
-    </KeyboardAwareScrollView>
+    </ScreenContainer>
   )
 }
 
@@ -61,9 +63,5 @@ const styles = StyleSheet.create({
     paddingTop: 10,
     paddingBottom: 80,
     fontStyle: "italic",
-  },
-  mainScroller: {
-    backgroundColor: "#ccddee",
-    padding: 20,
   },
 })

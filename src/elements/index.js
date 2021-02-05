@@ -11,7 +11,6 @@ export {
 } from "react-native"
 
 export {
-  Button,
   Card,
   Checkbox,
   HelperText,
@@ -30,6 +29,4 @@ export {
   Paragraph,
 } from "react-native-paper"
 
-export * from "./Buttons"
-export * from "./WebLink"
-export * from "react-native-keyboard-aware-scroll-view"
+export * from "./StyledElements"

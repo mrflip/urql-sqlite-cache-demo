@@ -2,17 +2,17 @@ import React /**/ from "react"
 //
 import { Paragraph, View, StyleSheet } from "../elements"
 
-export default function AnswerList({ answers }) {
-  return (
-    <View style={styles.answersContainer}>
-      {answers.map((answer, idx) => (
-        <Paragraph key={answer} style={styles.answerStyle}>
-          &#8226; {answer}
-        </Paragraph>
-      ))}
-    </View>
-  )
-}
+const AnswerList = ({ answers }) => (
+  <View style={styles.answersContainer}>
+    {answers.map((answer, _idx) => (
+      <Paragraph key={answer} style={styles.answerStyle}>
+        &#8226; {answer}
+      </Paragraph>
+    ))}
+  </View>
+)
+
+export default AnswerList
 
 const styles = StyleSheet.create({
   answersContainer: {
