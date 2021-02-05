@@ -1,17 +1,25 @@
-/* eslint-disable comma-dangle, quote-props, array-bracket-spacing, max-len */
+/* eslint-disable quote-props, array-bracket-spacing */
 module.exports = {
   env: {
     browser: true,
     es6: true,
     "react-native/react-native": true,
+    "jest/globals": true,
   },
-  extends: ["plugin:react/recommended", "airbnb", "prettier"],
+  extends: [
+    "plugin:react/recommended",
+    "airbnb",
+    "plugin:jest/all",
+    "plugin:chai-expect/recommended",
+    "plugin:chai-friendly/recommended",
+  ],
   plugins: ["react", "react-native"],
   globals: {
     Atomics: "readonly",
     SharedArrayBuffer: "readonly",
+    expect: "readonly",
   },
-  parser: "babel-eslint",
+  parser: "@babel/eslint-parser",
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
@@ -44,14 +52,22 @@ module.exports = {
     "space-unary-ops": ["warn", { overrides: { "!": true } }],
     //
     camelcase: 0,
+    "class-methods-use-this": 0,
     "import/no-named-as-default": 0,
+    "import/no-named-as-default-member": 0,
     "import/no-useless-path-segments": 0,
+    "jest/prefer-expect-assertions": 0,
+    "jest/valid-expect": 0,
     "key-spacing": 0,
+    "no-await-in-loop": 0,
+    "no-continue": 0,
     "no-multi-spaces": 0,
+    "no-restricted-syntax": 0,
     "no-underscore-dangle": 0,
     "no-use-before-define": 0,
     "no-useless-rename": 0,
     "object-curly-newline": 0,
+    "object-property-newline": 0,
     "padded-blocks": 0,
     quotes: 0,
     //
@@ -66,6 +82,7 @@ module.exports = {
     "react-native/no-inline-styles": 1,
     "react-native/no-unused-styles": 1,
     "react/jsx-key": ["error", { checkFragmentShorthand: true }],
+    "react/jsx-indent": 1,
     "react/no-unsafe": 2,
     "react-native/split-platform-components": 1,
     "react/function-component-definition": [
@@ -107,23 +124,9 @@ module.exports = {
           "Subheading",
           "Title",
           "WebLink",
+          "SecondaryText",
           //
           "Dialog.Title",
-        ],
-      },
-    ],
-    "class-methods-use-this": [
-      "error",
-      {
-        exceptMethods: [
-          "render",
-          "componentWillMount",
-          "componentDidMount",
-          "componentWillReceiveProps",
-          "shouldComponentUpdate",
-          "componentWillUpdate",
-          "componentDidUpdate",
-          "componentWillUnmount",
         ],
       },
     ],
