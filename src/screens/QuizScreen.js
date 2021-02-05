@@ -29,7 +29,7 @@ function QuizScreen({ navigation }) {
   //
   return (
     <KeyboardAwareScrollView style={styles.mainScroller}>
-      <Title>{question}</Title>
+      <Title>{question}!</Title>
 
       <AnswerEntry
         ref={textInput}
